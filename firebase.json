@@ -1,0 +1,25 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "the-ngo-application",
+          "appId": "1:684332864076:android:f2a681122176fd82671ae9",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "the-ngo-application",
+          "configurations": {
+            "android": "1:684332864076:android:f2a681122176fd82671ae9",
+            "ios": "1:684332864076:ios:9a8a083266ab1484671ae9",
+            "macos": "1:684332864076:ios:9a8a083266ab1484671ae9",
+            "web": "1:684332864076:web:fc934d5c232ef6d2671ae9",
+            "windows": "1:684332864076:web:56ed07bc0bd3ce07671ae9"
+          }
+        }
+      }
+    }
+  }
+}
