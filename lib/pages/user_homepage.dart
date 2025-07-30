@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+import 'package:ngo_app_v2/components/action_cards.dart';
 import 'package:ngo_app_v2/pages/content_navigation.dart';
 import 'package:ngo_app_v2/utils/authentication.dart';
 import 'package:ngo_app_v2/pages/landing_page.dart';
@@ -20,7 +21,6 @@ class UserHomePage extends StatelessWidget {
             style: TextStyle(color: Colors.white),
           ),
           flexibleSpace: Container(
-            // ignore: prefer_const_constructors
             decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.centerLeft,
@@ -35,7 +35,12 @@ class UserHomePage extends StatelessWidget {
           toolbarHeight: screenHeight / 12,
           actions: [
             IconButton(
-              icon: Icon(Icons.logout_rounded),
+              icon: Icon(Icons.logout_outlined),
+              style: ButtonStyle(
+                backgroundColor:
+                    WidgetStatePropertyAll<Color>(Color(0xFF0B4A0E)),
+                iconColor: WidgetStatePropertyAll<Color>(Colors.white),
+              ),
               onPressed: () {
                 AuthenticationHelper().signOut();
                 Navigator.push(
@@ -49,139 +54,7 @@ class UserHomePage extends StatelessWidget {
           ],
         ),
         body: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ImageSlideshow(
-                  indicatorColor: Colors.green,
-                  onPageChanged: (value) {
-                    debugPrint('Page changed: $value');
-                  },
-                  autoPlayInterval: 5000,
-                  isLoop: true,
-                  children: [
-                    Image.asset(
-                      'assets/images/blooddonation.png',
-                      fit: BoxFit.cover,
-                    ),
-                    Image.asset(
-                      'assets/images/computerlitracy.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                    Image.asset(
-                      'assets/images/edu.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ]),
-              SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  MaterialButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => UserDonation(),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: Colors.grey,
-                      ),
-                      child: Column(children: [
-                        Image.asset(
-                          "assets/images/donate.png",
-                          height: screenWidth / 3,
-                          width: screenWidth / 3,
-                          fit: BoxFit.fitWidth,
-                        ),
-                        Text(
-                          "Donate",
-                          style:
-                              TextStyle(color: Color(0xFF0B4A0E), fontSize: 18),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        )
-                      ]),
-                    ),
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => VolunteerNavigation(),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: Colors.grey,
-                      ),
-                      child: Column(children: [
-                        Image.asset(
-                          "assets/images/volunteer.png",
-                          height: screenWidth / 3,
-                          width: screenWidth / 3,
-                          fit: BoxFit.fitWidth,
-                        ),
-                        Text(
-                          "Volunteer",
-                          style:
-                              TextStyle(color: Color(0xFF0B4A0E), fontSize: 18),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        )
-                      ]),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              MaterialButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ContentNavigation(),
-                    ),
-                  );
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: Colors.grey,
-                  ),
-                  child: Column(children: [
-                    Image.asset(
-                      "assets/images/social.png",
-                      height: screenWidth / 3,
-                      width: screenWidth / 3,
-                      fit: BoxFit.fitWidth,
-                    ),
-                    Text(
-                      "Posts",
-                      style: TextStyle(color: Color(0xFF0B4A0E), fontSize: 18),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    )
-                  ]),
-                ),
-              ),
-            ],
-          ),
+          child: ActionCardsPage()
         ));
   }
 }
