@@ -3,18 +3,13 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ngo_app_v2/models/user.dart' as model;
-import 'package:ngo_app_v2/providers/user_provider.dart';
 import 'package:ngo_app_v2/resources/firestore_methods.dart';
-import 'package:ngo_app_v2/screens/comments_screen.dart';
 import 'package:ngo_app_v2/utils/colors.dart';
 import 'package:ngo_app_v2/utils/utils.dart';
 import 'package:ngo_app_v2/widgets/like_animation.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
-import 'package:share_plus/share_plus.dart';
 
 class PostCard extends StatefulWidget {
   final snap;
@@ -88,7 +83,6 @@ class _PostCardState extends State<PostCard> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
 
     return Container(
       // boundary needed for web
@@ -96,7 +90,6 @@ class _PostCardState extends State<PostCard> {
         border: Border.all(
           color: mobileBackgroundColor,
         ),
-        color: mobileBackgroundColor,
       ),
       padding: const EdgeInsets.symmetric(
         vertical: 10,
