@@ -24,7 +24,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance;
-  final ImagePicker impagePicker = ImagePicker();
+  final ImagePicker imagePicker = ImagePicker();
   String email = "",
       password = "",
       name = "",
@@ -99,29 +99,70 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 200,
                     width: 200,
                     clipBehavior: Clip.hardEdge,
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(100)),
-                    child: Padding(
-                      padding: EdgeInsets.zero,
-                      child: TextButton(
-                        style: ButtonStyle(),
-                        onPressed: () async {
-                          XFile? file = await impagePicker.pickImage(
-                              source: ImageSource.gallery);
-                          path = file!.path;
-                          final croppedFile = await ImageCropper().cropImage(
-                              sourcePath: path,
-                              aspectRatio:
-                                  CropAspectRatio(ratioX: 1, ratioY: 1));
-                          path1 = croppedFile!.path;
-                          setState(() {});
-                        },
-                        child: Container(
-                          child: path1 == ""
-                              ? Image.asset("assets/images/blankuser.png")
-                              : Image.file(File(path1)),
-                        ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: TextButton(
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(EdgeInsets.zero),
                       ),
+                      onPressed: () async {
+                        try {
+                          debugPrint("Opening image picker...");
+                          final XFile? file = await imagePicker.pickImage(
+                            source: ImageSource.gallery,
+                          );
+
+                          if (file == null) {
+                            debugPrint("Image selection canceled.");
+                            return;
+                          }
+
+                          debugPrint("Image selected: ${file.path}");
+
+                          final croppedFile = await ImageCropper().cropImage(
+                            sourcePath: file.path,
+                            aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+                            uiSettings: [
+                              AndroidUiSettings(
+                                toolbarTitle: 'Crop Image',
+                                lockAspectRatio: true,
+                                toolbarColor: Colors.blueGrey,
+                                toolbarWidgetColor: Colors.white,
+                              ),
+                              IOSUiSettings(
+                                title: 'Crop Image',
+                              ),
+                            ],
+                          );
+
+                          if (croppedFile == null) {
+                            debugPrint("Image cropping canceled.");
+                            return;
+                          }
+
+                          debugPrint("Image cropped: ${croppedFile.path}");
+
+                          if (!mounted) return;
+
+                          setState(() {
+                            path1 = croppedFile.path;
+                            debugPrint("State updated with new image path.");
+                          });
+                        } catch (e, stackTrace) {
+                          debugPrint("Error selecting or cropping image: $e");
+                          debugPrint("Stack trace: $stackTrace");
+                        }
+                      },
+                      child: path1.isEmpty
+                          ? Image.asset(
+                              "assets/images/blankuser.png",
+                              fit: BoxFit.cover,
+                            )
+                          : Image.file(
+                              File(path1),
+                              fit: BoxFit.cover,
+                            ),
                     ),
                   ),
                 ),

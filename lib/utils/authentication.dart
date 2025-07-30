@@ -65,45 +65,59 @@ class AuthenticationHelper {
   }
 
   // Sign In Method
-  Future signIn(
-      {required BuildContext context,
-      required String email,
-      required String password}) async {
+  Future<void> signIn({
+    required BuildContext context,
+    required String email,
+    required String password,
+  }) async {
     try {
-      Map<String, dynamic> data;
-      await _auth
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) => Fluttertoast.showToast(
-                msg: "Sign In Successful",
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.BOTTOM,
-                backgroundColor: Colors.blueGrey,
-                fontSize: 12,
-              ))
-          .then((value) {
-        final docRef =
-            _firestore.collection("roles").doc(_auth.currentUser!.uid);
-        docRef.get().then((DocumentSnapshot doc) {
-          data = doc.data() as Map<String, dynamic>;
-          if (data['admin'] == false) {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => UserHomePage()));
-          } else {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => AdminHomePage()));
-          }
-        });
-      });
-      return null;
-    } on FirebaseAuthException catch (e) {
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+
       Fluttertoast.showToast(
-        msg: e.message.toString(),
+        msg: "Sign In Successful",
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
-        backgroundColor: Color.fromRGBO(96, 125, 139, 1),
+        backgroundColor: Colors.blueGrey,
         fontSize: 12,
       );
-      return e.message;
+
+      final docRef = _firestore.collection("roles").doc(_auth.currentUser!.uid);
+      final DocumentSnapshot doc = await docRef.get();
+
+      if (!doc.exists) {
+        throw Exception("Role document does not exist.");
+      }
+
+      final data = doc.data() as Map<String, dynamic>;
+
+      // Navigate based on role
+      if (data['admin'] == true) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => AdminHomePage()),
+        );
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => UserHomePage()),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      Fluttertoast.showToast(
+        msg: e.message ?? "Authentication failed",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: const Color.fromRGBO(96, 125, 139, 1),
+        fontSize: 12,
+      );
+    } catch (e) {
+      Fluttertoast.showToast(
+        msg: e.toString(),
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.red,
+        fontSize: 12,
+      );
     }
   }
 

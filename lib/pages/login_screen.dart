@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last
-
 import 'package:flutter/material.dart';
 import 'package:ngo_app_v2/utils/authentication.dart';
 import 'package:ngo_app_v2/pages/change_password.dart';
@@ -17,7 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void SignIn(BuildContext context) {
+  void signIn(BuildContext context) {
     email = emailController.text.trim();
     password = passwordController.text.trim();
     setState(() {});
@@ -178,7 +176,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: EdgeInsets.fromLTRB(0, 30, 0, 16),
                   child: MaterialButton(
                     onPressed: () {
-                      SignIn(context);
+                      signIn(context);
                     },
                     color: Color(0xff0b5d0b),
                     elevation: 0,
@@ -186,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     padding: EdgeInsets.all(16),
-                    child: Text(
+                    child: const Text(
                       "Go",
                       style: TextStyle(
                         fontSize: 16,
