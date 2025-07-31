@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:ngo_app_v2/components/action_cards.dart';
-import 'package:ngo_app_v2/pages/content_navigation.dart';
 import 'package:ngo_app_v2/utils/authentication.dart';
 import 'package:ngo_app_v2/pages/landing_page.dart';
-import 'package:ngo_app_v2/pages/volunteer_navigation.dart';
-import 'package:ngo_app_v2/pages/user_donation.dart';
 
 class UserHomePage extends StatelessWidget {
   const UserHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(

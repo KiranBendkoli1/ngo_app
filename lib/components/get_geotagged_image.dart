@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:io';
@@ -35,7 +33,7 @@ class GetGeoTaggedImageState extends State<GetGeoTaggedImage> {
       administrativeArea,
       street;
   var _position, _address, _datetime, imageSelected, path = "", path1 = "";
-  final XFile _image = XFile("");
+
   bool changeUI = false;
   final picker = ImagePicker();
   Future getImage() async {
@@ -56,9 +54,9 @@ class GetGeoTaggedImageState extends State<GetGeoTaggedImage> {
         return Future.error('Location permissions are denied');
       }
     }
-    Position position = await Geolocator.getCurrentPosition(
+    await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.bestForNavigation)
-        .then((Position position) {
+        .then((position) {
       setState(() {
         _position = position;
       });

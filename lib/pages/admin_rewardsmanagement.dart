@@ -1,10 +1,6 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ngo_app_v2/pages/admin_homepage.dart';
 
@@ -32,7 +28,6 @@ class _ManagementRewardsState extends State<ManagementRewards> {
     print(projectId);
   }
 
-  final FirebaseStorage _storage = FirebaseStorage.instance;
   XFile? file;
   String email = '';
   int rewards = 0, rank = 0;
@@ -43,9 +38,6 @@ class _ManagementRewardsState extends State<ManagementRewards> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
       backgroundColor: Color(0xffffffff),
       body: Center(
@@ -221,8 +213,6 @@ class _ManagementRewardsState extends State<ManagementRewards> {
 
     setState(() {});
     try {
-      Reference referenceRoot = _storage.ref();
-
       await _firestore.collection('volunteers').doc(email).update({
         'rewards': rewards,
         'rank': rank,

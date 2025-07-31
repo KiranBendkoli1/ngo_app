@@ -1,19 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:ngo_app_v2/components/add_project.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ngo_app_v2/model/project_model.dart';
+import 'package:ngo_app_v2/models/project_model.dart';
 import 'package:ngo_app_v2/pages/admin_project_info.dart';
 import 'package:ngo_app_v2/pages/login_screen.dart';
-import 'package:ngo_app_v2/pages/volunteer_info.dart';
 import 'package:ngo_app_v2/pages/volunteer_registrationform.dart';
 import 'package:ngo_app_v2/utils/authentication.dart';
-import 'package:ngo_app_v2/pages/admin_projects.dart';
-import 'package:ngo_app_v2/pages/payment_home.dart';
-import 'package:ngo_app_v2/pages/transaction_details.dart';
-import 'package:ngo_app_v2/pages/admin_volunteers.dart';
-import 'package:ngo_app_v2/pages/admin_profile.dart';
 
 class VolunteerSearch extends StatefulWidget {
   const VolunteerSearch({super.key});
@@ -43,7 +36,6 @@ class _VolunteerSearchState extends State<VolunteerSearch> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     TextEditingController searchController = TextEditingController();
     return Scaffold(

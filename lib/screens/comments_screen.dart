@@ -5,7 +5,6 @@ import 'package:ngo_app_v2/resources/firestore_methods.dart';
 import 'package:ngo_app_v2/utils/colors.dart';
 import 'package:ngo_app_v2/utils/utils.dart';
 import 'package:ngo_app_v2/widgets/comment_card.dart';
-import 'package:provider/provider.dart';
 
 class CommentsScreen extends StatefulWidget {
   final postId;
@@ -20,6 +19,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
   Map<String, dynamic>? data;
   @override
   void initState() {
+    super.initState();
     DocumentReference<Map<String, dynamic>> documentRef = FirebaseFirestore
         .instance
         .collection('volunteers')
@@ -29,16 +29,8 @@ class _CommentsScreenState extends State<CommentsScreen> {
       if (snapshot.exists) {
         // Document data exists
         data = snapshot.data();
-        print('Document ID: ${snapshot.id}');
-        print('Document Data: $data');
-      } else {
-        // Document data does not exist
-        print('Document does not exist.');
       }
-    }).catchError((error) {
-      // Error handling
-      print('Error retrieving document: $error');
-    });
+    }).catchError((error) {});
   }
 
   final TextEditingController commentEditingController =

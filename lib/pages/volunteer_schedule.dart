@@ -3,9 +3,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ngo_app_v2/pages/login_screen.dart';
-import 'package:ngo_app_v2/pages/volunteer_info.dart';
-
 class VolunteerSchedule extends StatefulWidget {
   const VolunteerSchedule({super.key});
 
@@ -58,7 +55,6 @@ class _VolunteerScheduleState extends State<VolunteerSchedule> {
       appBar: AppBar(
         title: Text('Schedules'),
         flexibleSpace: Container(
-          // ignore: prefer_const_constructors
           decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,

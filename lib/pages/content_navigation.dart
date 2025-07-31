@@ -16,7 +16,6 @@ class ContentNavigation extends StatefulWidget {
 }
 
 class _ContentNavigationState extends State<ContentNavigation> {
-  int _currentIndex = 0;
   Uint8List? file;
 
   bool isLoading = false;
@@ -26,6 +25,7 @@ class _ContentNavigationState extends State<ContentNavigation> {
   Map<String, dynamic>? data;
   @override
   void initState() {
+    super.initState();
     DocumentReference<Map<String, dynamic>> documentRef = FirebaseFirestore
         .instance
         .collection('volunteers')
@@ -35,14 +35,8 @@ class _ContentNavigationState extends State<ContentNavigation> {
       if (snapshot.exists) {
         // Document data exists
         data = snapshot.data();
-      } else {
-        // Document data does not exist
-        print('Document does not exist.');
       }
-    }).catchError((error) {
-      // Error handling
-      print('Error retrieving document: $error');
-    });
+    }).catchError((error) {});
   }
 
   _selectImage(BuildContext parentContext) async {

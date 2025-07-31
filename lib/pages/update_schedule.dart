@@ -1,29 +1,23 @@
-// ignore_for_file: prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ngo_app_v2/pages/admin_homepage.dart';
-import 'package:ngo_app_v2/pages/signup_screen.dart';
-import 'package:ngo_app_v2/pages/volunteer_category.dart';
-import 'package:ngo_app_v2/pages/user_homepage.dart';
-// import 'package:ngo_app_v2/pages/volunteer_updatedProfile.dart';
 
 class UpdateSchedule extends StatelessWidget {
   //const VolunteerInfo({Key? key}) : super(key: key);
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  TextEditingController email = TextEditingController();
-  TextEditingController taskm = TextEditingController();
-  TextEditingController taskts = TextEditingController();
-  TextEditingController taskw = TextEditingController();
-  TextEditingController taskt = TextEditingController();
-  TextEditingController taskf = TextEditingController();
-  TextEditingController tasks = TextEditingController();
-  TextEditingController tasksu = TextEditingController();
-  TextEditingController start_time = TextEditingController();
-  TextEditingController finish_time = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController taskm = TextEditingController();
+  final TextEditingController taskts = TextEditingController();
+  final TextEditingController taskw = TextEditingController();
+  final TextEditingController taskt = TextEditingController();
+  final TextEditingController taskf = TextEditingController();
+  final TextEditingController tasks = TextEditingController();
+  final TextEditingController tasksu = TextEditingController();
+  final TextEditingController start_time = TextEditingController();
+  final TextEditingController finish_time = TextEditingController();
 
   UpdateSchedule({super.key});
 

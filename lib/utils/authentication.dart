@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:ngo_app_v2/model/user_model.dart';
+import 'package:ngo_app_v2/models/user_model.dart';
 import 'package:ngo_app_v2/pages/admin_homepage.dart';
 import 'package:ngo_app_v2/pages/user_homepage.dart';
 

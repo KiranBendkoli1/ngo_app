@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:ngo_app_v2/pages/login_screen.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:ngo_app_v2/pages/signup_screen.dart';
-import 'package:ngo_app_v2/pages/user_homepage.dart';
-import 'package:ngo_app_v2/pages/volunteer_navigation.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -43,7 +41,6 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -54,30 +51,28 @@ class _LandingPageState extends State<LandingPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Container(
-              child: Center(
-                child: Column(
-                  children: [
-                    Image.asset(
-                      "assets/images/logo.png",
-                      height: screenHeight / 5,
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "NGO Nexus",
-                      style: TextStyle(fontSize: 26),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      "Even the smallest contributions count",
-                      style: TextStyle(fontSize: 18),
-                    )
-                  ],
-                ),
+            Center(
+              child: Column(
+                children: [
+                  Image.asset(
+                    "assets/images/logo.png",
+                    height: screenHeight / 5,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "NGO Nexus",
+                    style: TextStyle(fontSize: 26),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Even the smallest contributions count",
+                    style: TextStyle(fontSize: 18),
+                  )
+                ],
               ),
             ),
             Column(

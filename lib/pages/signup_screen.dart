@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last
-
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -547,10 +545,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       Reference referenceUserImages = referenceRoot.child('images');
       Reference imageReference =
           referenceUserImages.child(user!.email.toString());
-      print(path1);
       await imageReference.putFile(File(path1));
       imageUrl = await imageReference.getDownloadURL();
-      print(imageUrl);
       await _firestore.collection('volunteers').doc(user.email).set({
         'email': email,
         'name': name,
@@ -566,22 +562,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
             .doc(user.uid)
             .set({"admin": false, "email": email});
 
-        if (user != null) {
-          Fluttertoast.showToast(
-            msg: "Successfully created account of $name",
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.blueGrey,
-            fontSize: 12,
-          );
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => UserHomePage(),
-            ),
-          );
-        }
-      }).catchError((e) {
+        Fluttertoast.showToast(
+          msg: "Successfully created account of $name",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.blueGrey,
+          fontSize: 12,
+        );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => UserHomePage(),
+          ),
+        );
+            }).catchError((e) {
         Fluttertoast.showToast(
           msg: "Error  ${e.message}",
           toastLength: Toast.LENGTH_LONG,

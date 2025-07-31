@@ -1,11 +1,9 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import 'package:ngo_app_v2/model/project_model.dart';
+import 'package:ngo_app_v2/models/project_model.dart';
 
 class AdminProjectInfo extends StatefulWidget {
-  ProjectModel projectModel;
-  AdminProjectInfo({super.key, required this.projectModel});
+  final ProjectModel projectModel;
+  const AdminProjectInfo({super.key, required this.projectModel});
 
   @override
   State<AdminProjectInfo> createState() => _AdminProjectInfoState();

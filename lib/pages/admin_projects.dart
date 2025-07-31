@@ -1,9 +1,7 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:ngo_app_v2/components/add_project.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ngo_app_v2/model/project_model.dart';
+import 'package:ngo_app_v2/models/project_model.dart';
 import 'package:ngo_app_v2/pages/admin_project_info.dart';
 import 'package:ngo_app_v2/pages/login_screen.dart';
 import 'package:ngo_app_v2/utils/authentication.dart';
@@ -33,7 +31,6 @@ class _AdminProjectsState extends State<AdminProjects> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     TextEditingController searchController = TextEditingController();
     return Scaffold(

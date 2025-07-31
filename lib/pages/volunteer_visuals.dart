@@ -27,7 +27,6 @@ class _VolunteerVisualsState extends State<VolunteerVisuals> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

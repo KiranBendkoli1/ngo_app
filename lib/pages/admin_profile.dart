@@ -2,8 +2,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:ngo_app_v2/components/get_geotagged_image.dart';
-import 'package:ngo_app_v2/pages/admin_addrewards.dart';
 import 'package:ngo_app_v2/pages/admin_rewardsmanagement.dart';
 import 'package:ngo_app_v2/pages/update_schedule.dart';
 
@@ -30,7 +28,6 @@ class _AdminProfileState extends State<AdminProfile> {
         firestore.collection("roles").doc("cA8bqfYEGTRojL5l00oQOvGHCcF3");
     docRef.get().then((DocumentSnapshot doc) {
       data = doc.data() as Map<String, dynamic>;
-      print(data);
       imageUrl = data['imageUrl'];
       name = data['name'];
       email = data['email'];
@@ -45,7 +42,6 @@ class _AdminProfileState extends State<AdminProfile> {
       appBar: AppBar(
         title: Text("Welcome Admin"),
         flexibleSpace: Container(
-          // ignore: prefer_const_constructors
           decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,

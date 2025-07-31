@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ngo_app_v2/pages/volunteer_profile.dart';
-import 'package:ngo_app_v2/pages/volunteer_search.dart';
 import 'package:ngo_app_v2/pages/volunteer_visuals.dart';
 
 class VolunteerCategory extends StatefulWidget {
@@ -40,7 +38,6 @@ class _VolunteerCategoryState extends State<VolunteerCategory> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Stack(
       fit: StackFit.expand,

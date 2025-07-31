@@ -1,31 +1,25 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:ngo_app_v2/pages/signup_screen.dart';
-import 'package:ngo_app_v2/pages/volunteer_category.dart';
-import 'package:ngo_app_v2/pages/user_homepage.dart';
 import 'package:ngo_app_v2/pages/volunteer_profile.dart';
 
 class VolunteerInfo extends StatelessWidget {
-  //const VolunteerInfo({Key? key}) : super(key: key);
-
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  TextEditingController firstNameData = TextEditingController();
-  TextEditingController lastNameData = TextEditingController();
-  TextEditingController dobData = TextEditingController();
-  TextEditingController ageData = TextEditingController();
-  TextEditingController genderData = TextEditingController();
-  TextEditingController bloodGroupData = TextEditingController();
-  TextEditingController emailData = TextEditingController();
-  TextEditingController mobileNumberData = TextEditingController();
-  TextEditingController addressData = TextEditingController();
-  TextEditingController stateData = TextEditingController();
-  TextEditingController countryData = TextEditingController();
-  TextEditingController pinCodeData = TextEditingController();
-  TextEditingController nationalityData = TextEditingController();
+  final TextEditingController firstNameData = TextEditingController();
+  final TextEditingController lastNameData = TextEditingController();
+  final TextEditingController dobData = TextEditingController();
+  final TextEditingController ageData = TextEditingController();
+  final TextEditingController genderData = TextEditingController();
+  final TextEditingController bloodGroupData = TextEditingController();
+  final TextEditingController emailData = TextEditingController();
+  final TextEditingController mobileNumberData = TextEditingController();
+  final TextEditingController addressData = TextEditingController();
+  final TextEditingController stateData = TextEditingController();
+  final TextEditingController countryData = TextEditingController();
+  final TextEditingController pinCodeData = TextEditingController();
+  final TextEditingController nationalityData = TextEditingController();
 
   VolunteerInfo({super.key});
 

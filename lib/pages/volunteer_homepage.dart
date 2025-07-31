@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ngo_app_v2/components/add_project.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class VolunteerHomePage extends StatefulWidget {
@@ -10,19 +9,6 @@ class VolunteerHomePage extends StatefulWidget {
 }
 
 class _VolunteerHomePageState extends State<VolunteerHomePage> {
-  /*final List<Map<String, dynamic>> _allProj = [
-    {"id": 1, "name": "Give Directly", "address": "Nashik"},
-    {"id": 2, "name": "APOPO", "address": "Nashik"},
-    {"id": 3, "name": "charity: water", "address": "Nashik"},
-    {"id": 4, "name": " Wild4Life", "address": "Nashik"},
-    {"id": 5, "name": " ZanaLife", "address": "Nashik"},
-    {"id": 6, "name": "ColaLife", "address": "Nashik"},
-    {"id": 7, "name": "Tomike Health", "address": "Nashik"},
-    {"id": 8, "name": "UNICEF", "address": "Nashik"},
-    {"id": 9, "name": "Wikimedia Foundation", "address": "Nashik"},
-    {"id": 10, "name": "Frontline SMS", "address": "Nashik"},
-  ]; */
-
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   var allProjects;
   String projectName = "";
@@ -43,9 +29,6 @@ class _VolunteerHomePageState extends State<VolunteerHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Welcome to the Home page"),

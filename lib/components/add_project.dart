@@ -29,7 +29,6 @@ class _AddProjectState extends State<AddProject> {
     setState(() {
       projectId = querySnapshot.docs.length;
     });
-    print(projectId);
   }
 
   final FirebaseStorage _storage = FirebaseStorage.instance;
@@ -59,7 +58,6 @@ class _AddProjectState extends State<AddProject> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: Color(0xffffffff),
@@ -577,7 +575,13 @@ class _AddProjectState extends State<AddProject> {
         );
       });
     } catch (e) {
-      print(e.toString());
+      Fluttertoast.showToast(
+        msg: "Error: $e",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.red,
+        fontSize: 12,
+      );
     }
   }
 }

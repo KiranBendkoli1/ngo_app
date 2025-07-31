@@ -1,22 +1,13 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ngo_app_v2/pages/admin_homepage.dart';
-import 'package:ngo_app_v2/pages/signup_screen.dart';
-import 'package:ngo_app_v2/pages/volunteer_category.dart';
-import 'package:ngo_app_v2/pages/user_homepage.dart';
-// import 'package:ngo_app_v2/pages/volunteer_updatedProfile.dart';
 
 class Addrewards extends StatelessWidget {
-  //const VolunteerInfo({Key? key}) : super(key: key);
-
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  TextEditingController email = TextEditingController();
-  TextEditingController rank = TextEditingController();
-  TextEditingController rewards = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController rank = TextEditingController();
+  final TextEditingController rewards = TextEditingController();
 
   Addrewards({super.key});
 

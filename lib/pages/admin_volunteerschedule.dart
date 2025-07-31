@@ -1,12 +1,6 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ngo_app_v2/pages/login_screen.dart';
-import 'package:ngo_app_v2/pages/volunteer_info.dart';
-import 'package:ngo_app_v2/pages/volunteer_schedule.dart';
-
 class AdminVSchedule extends StatefulWidget {
   const AdminVSchedule({super.key});
 
@@ -21,7 +15,6 @@ class _AdminVScheduleState extends State<AdminVSchedule> {
       appBar: AppBar(
         title: Text('Training Schedules'),
         flexibleSpace: Container(
-          // ignore: prefer_const_constructors
           decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,
@@ -38,38 +31,34 @@ class _AdminVScheduleState extends State<AdminVSchedule> {
           size: 24,
         ),
       ),
-      body: Container(
-        child: StreamBuilder(
-          stream:
-              FirebaseFirestore.instance.collection('volunteers').snapshots(),
-          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.hasData) {
-              return ListView.builder(
-                  itemCount: snapshot.data!.docs.length,
-                  itemBuilder: (context, index) {
-                    var data = snapshot.data!.docs[index].data()
-                        as Map<String, dynamic>;
-                    return Container(
-                        height: 30,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 230,
-                              child: Text(data['name']),
-                            ),
-                            Container(
-                              child: Text(data['email']),
-                            ),
-                          ],
-                        ));
-                  });
-            } else {
-              return Container();
-            }
-          },
-        ),
+      body: StreamBuilder(
+        stream:
+            FirebaseFirestore.instance.collection('volunteers').snapshots(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (context, index) {
+                  var data = snapshot.data!.docs[index].data()
+                      as Map<String, dynamic>;
+                  return Container(
+                      height: 30,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 230,
+                            child: Text(data['name']),
+                          ),
+                          Text(data['email']),
+                        ],
+                      ));
+                });
+          } else {
+            return Container();
+          }
+        },
       ),
     );
   }

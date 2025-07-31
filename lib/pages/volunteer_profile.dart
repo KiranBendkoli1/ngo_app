@@ -4,11 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ngo_app_v2/components/get_geotagged_image.dart';
-import 'package:ngo_app_v2/pages/admin_volunteerschedule.dart';
-import 'package:ngo_app_v2/pages/login_screen.dart';
 import 'package:ngo_app_v2/pages/volunteer_info.dart';
 import 'package:ngo_app_v2/pages/volunteer_schedule.dart';
-import 'package:ngo_app_v2/pages/update_schedule.dart';
 
 class VolunteerProfile extends StatefulWidget {
   const VolunteerProfile({super.key});
@@ -74,7 +71,6 @@ class _VolunteerProfileState extends State<VolunteerProfile> {
       appBar: AppBar(
         title: Text('Profile'),
         flexibleSpace: Container(
-          // ignore: prefer_const_constructors
           decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,

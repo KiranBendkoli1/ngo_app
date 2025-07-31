@@ -4,10 +4,10 @@ import 'package:ngo_app_v2/pages/user_donation.dart';
 import 'package:ngo_app_v2/pages/volunteer_navigation.dart';
 
 class ActionCardsPage extends StatelessWidget {
+  const ActionCardsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -105,6 +105,7 @@ class ActionCard extends StatelessWidget {
   final VoidCallback onTap;
 
   const ActionCard({
+    super.key,
     required this.title,
     required this.description,
     required this.icon,
@@ -142,7 +143,10 @@ class ActionCard extends StatelessWidget {
               Text(
                 description,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14, color: textColor, fontWeight: FontWeight.w400),
+                style: TextStyle(
+                    fontSize: 14,
+                    color: textColor,
+                    fontWeight: FontWeight.w400),
               ),
             ],
           ),
