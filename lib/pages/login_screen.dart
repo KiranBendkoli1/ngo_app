@@ -12,238 +12,139 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool obText = true;
   String email = "", password = "";
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   void signIn(BuildContext context) {
     email = emailController.text.trim();
     password = passwordController.text.trim();
-    setState(() {});
-    AuthenticationHelper()
-        .signIn(context: context, email: email, password: password);
+    AuthenticationHelper().signIn(
+      context: context,
+      email: email,
+      password: password,
+    );
+  }
+
+  InputDecoration _inputDecoration(String hint) {
+    return InputDecoration(
+      hintText: hint,
+      hintStyle: TextStyle(color: Colors.grey[600]),
+      filled: true,
+      fillColor: Color(0xfff2f2f3),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide.none,
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffffffff),
-      body: Align(
-        alignment: Alignment.center,
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(16, 50, 16, 16),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Welcome Back 👋",
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xff0b3005),
+                ),
+              ),
+              const SizedBox(height: 32),
+              TextField(
+                controller: emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: _inputDecoration("Email"),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: passwordController,
+                obscureText: obText,
+                decoration: _inputDecoration("Password").copyWith(
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      obText ? Icons.visibility : Icons.visibility_off,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        obText = !obText;
+                      });
+                    },
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ChangePassword(email: emailController.text),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    "Forgot password?",
+                    style: TextStyle(color: Color(0xff0b5d0b)),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: () => signIn(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xff0b5d0b),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  minimumSize: Size.fromHeight(48),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 2,
+                ),
+                child: const Text(
                   "Login",
-                  textAlign: TextAlign.start,
-                  overflow: TextOverflow.clip,
                   style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 24,
-                    color: Color(0xff0b3005),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 30, 0, 16),
-                  child: TextField(
-                    controller: emailController,
-                    obscureText: false,
-                    textAlign: TextAlign.start,
-                    maxLines: 1,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 14,
-                      color: Color(0xff000000),
-                    ),
-                    decoration: InputDecoration(
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide:
-                            BorderSide(color: Color(0x00ffffff), width: 1),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide:
-                            BorderSide(color: Color(0x00ffffff), width: 1),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide:
-                            BorderSide(color: Color(0x00ffffff), width: 1),
-                      ),
-                      hintText: "Email ",
-                      hintStyle: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14,
-                        color: Color(0xff9f9d9d),
-                      ),
-                      filled: true,
-                      fillColor: Color(0xfff2f2f3),
-                      isDense: false,
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
-                  child: TextField(
-                    controller: passwordController,
-                    obscureText: obText,
-                    keyboardType: TextInputType.visiblePassword,
-                    textAlign: TextAlign.start,
-                    maxLines: 1,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 14,
-                      color: Color(0xff000000),
-                    ),
-                    decoration: InputDecoration(
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide:
-                            BorderSide(color: Color(0x00ffffff), width: 1),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide:
-                            BorderSide(color: Color(0x00ffffff), width: 1),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide:
-                            BorderSide(color: Color(0x00ffffff), width: 1),
-                      ),
-                      hintText: "Password",
-                      hintStyle: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14,
-                        color: Color(0xff9f9d9d),
-                      ),
-                      filled: true,
-                      fillColor: Color(0xfff2f2f3),
-                      isDense: false,
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          if (obText) {
-                            obText = false;
-                          } else {
-                            obText = true;
-                          }
-                          setState(() {});
-                        },
-                        icon: obText
-                            ? Icon(
-                                Icons.visibility,
-                                color: Colors.grey,
-                              )
-                            : Icon(
-                                Icons.visibility_off,
-                                color: Colors.grey,
-                              ),
-                      ),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
+              ),
+              const SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Don't have an account? "),
+                  TextButton(
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ChangePassword(
-                            email: emailController.text,
-                          ),
+                          builder: (_) => const SignUpScreen(),
                         ),
                       );
                     },
-                    child: Text("Forget password"),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 30, 0, 16),
-                  child: MaterialButton(
-                    onPressed: () {
-                      signIn(context);
-                    },
-                    color: Color(0xff0b5d0b),
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    padding: EdgeInsets.all(16),
                     child: const Text(
-                      "Go",
+                      "Sign Up",
                       style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        fontStyle: FontStyle.normal,
+                        color: Color(0xff054407),
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    textColor: Color(0xffffffff),
-                    height: 40,
-                    minWidth: MediaQuery.of(context).size.width,
                   ),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      TextButton(
-                        onPressed: () => {},
-                        child: Text(
-                          "Don't Have an account?",
-                          textAlign: TextAlign.start,
-                          overflow: TextOverflow.clip,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 14,
-                            color: Color(0xff000000),
-                          ),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: (() {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) => SignUpScreen()),
-                            ),
-                          );
-                        }),
-                        child: Text(
-                          "Sign Up",
-                          textAlign: TextAlign.start,
-                          overflow: TextOverflow.clip,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 14,
-                            color: Color(0xff054407),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+                ],
+              )
+            ],
           ),
         ),
       ),

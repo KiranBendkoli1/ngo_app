@@ -69,7 +69,11 @@ class _VolunteerProfileState extends State<VolunteerProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        automaticallyImplyLeading: false,
+        title: Text(
+          'Profile',
+          style: TextStyle(color: Colors.white),
+        ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -81,10 +85,6 @@ class _VolunteerProfileState extends State<VolunteerProfile> {
                 ]),
           ),
         ),
-        leading: Icon(
-          Icons.arrow_back,
-          size: 24,
-        ),
       ),
       body: imageUrl == null
           ? Center(
@@ -92,17 +92,21 @@ class _VolunteerProfileState extends State<VolunteerProfile> {
             )
           : SingleChildScrollView(
               child: Container(
+                height: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Colors.blue.shade50, // approx. orange-50
+                      Colors.cyan.shade50, // approx. red-50
+                    ],
+                  ),
+                ),
                 padding: EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      "Profile",
-                      style: TextStyle(
-                        fontSize: 32.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                     SizedBox(
                       height: 20.0,
                     ),

@@ -50,8 +50,18 @@ class _UserDonationState extends State<UserDonation> {
           child: Column(
             children: [
               const SizedBox(height: 12),
-              const Icon(Icons.favorite_outline,
-                  color: Colors.deepOrange, size: 50),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.favorite_outline,
+                  size: 32,
+                ),
+                style: ButtonStyle(
+                  backgroundColor:
+                      WidgetStatePropertyAll<Color>(Colors.deepOrange),
+                  iconColor: WidgetStatePropertyAll<Color>(Colors.white),
+                ),
+              ),
               const SizedBox(height: 12),
               const Text(
                 "Make a Difference",
@@ -71,8 +81,19 @@ class _UserDonationState extends State<UserDonation> {
               /// 💸 Donate Money Card
               DonationOptionCard(
                 key: const Key("donate_money_card"),
-                icon: Icons.payments_outlined,
-                iconColor: Colors.green,
+                textColor: Colors.green,
+                icon: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.credit_card_rounded,
+                    size: 32,
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor:
+                        WidgetStatePropertyAll<Color>(Colors.green),
+                    iconColor: WidgetStatePropertyAll<Color>(Colors.white),
+                  ),
+                ),
                 title: "Donate Money",
                 description:
                     "Make a monetary contribution to support our programs and operations",
@@ -89,8 +110,18 @@ class _UserDonationState extends State<UserDonation> {
               /// 📦 Other Donations Card
               DonationOptionCard(
                 key: const Key("other_donations_card"),
-                icon: Icons.card_giftcard,
-                iconColor: Colors.blue,
+                icon: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.wallet_giftcard_outlined,
+                    size: 32,
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll<Color>(Colors.blue),
+                    iconColor: WidgetStatePropertyAll<Color>(Colors.white),
+                  ),
+                ),
+                textColor: Colors.blue,
                 title: "Other Donations",
                 description:
                     "Donate clothes, food, books, or other essential items",

@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:ngo_app_v2/pages/login_screen.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:ngo_app_v2/pages/signup_screen.dart';
+import 'package:geolocator/geolocator.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -13,30 +13,23 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  var _position;
   @override
   void initState() {
+    super.initState();
     getGeoPermission();
   }
 
   void getGeoPermission() async {
-    final Geolocator geolocator = Geolocator();
-    LocationPermission permission = LocationPermission.denied;
-    permission = await Geolocator.checkPermission();
+    LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
         return Future.error('Location permissions are denied');
       }
     }
-    Position position = await Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.bestForNavigation)
-        .then((Position position) {
-      setState(() {
-        _position = position;
-      });
-      return position;
-    });
+    await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.bestForNavigation,
+    );
   }
 
   @override
@@ -44,101 +37,106 @@ class _LandingPageState extends State<LandingPage> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-        body: Container(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFFEFFAF1), Color(0xFFCFFDE1)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Center(
-              child: Column(
-                children: [
-                  Image.asset(
-                    "assets/images/logo.png",
-                    height: screenHeight / 5,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "NGO Nexus",
-                    style: TextStyle(fontSize: 26),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Even the smallest contributions count",
-                    style: TextStyle(fontSize: 18),
-                  )
-                ],
-              ),
-            ),
+            const SizedBox(height: 80),
             Column(
               children: [
-                MaterialButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LoginScreen(),
-                      ),
-                    );
-                  },
-                  color: Color(0xff0b5d0b),
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  padding: EdgeInsets.all(16),
-                  textColor: Color(0xffffffff),
-                  height: 40,
-                  minWidth: MediaQuery.of(context).size.width,
-                  child: Text(
-                    "Login",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      fontStyle: FontStyle.normal,
-                    ),
+                Image.asset(
+                  "assets/images/logo1.png",
+                  height: screenHeight / 5,
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  "NGO Nexus",
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF0B5D0B),
                   ),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                MaterialButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SignUpScreen(),
-                      ),
-                    );
-                  },
-                  color: Color(0xff0b5d0b),
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  padding: EdgeInsets.all(16),
-                  textColor: Color(0xffffffff),
-                  height: 40,
-                  minWidth: MediaQuery.of(context).size.width,
-                  child: Text(
-                    "Register",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      fontStyle: FontStyle.normal,
-                    ),
+                const SizedBox(height: 10),
+                Text(
+                  "Even the smallest contributions count",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black87,
                   ),
                 ),
               ],
             ),
+            Column(
+              children: [
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
+                  },
+                  icon:
+                      Icon(Icons.login_rounded, color: const Color(0xB3F9F9F9)),
+                  label: Text("Login"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xff0b5d0b),
+                    foregroundColor: Colors.white,
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    minimumSize: Size(double.infinity, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    textStyle: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    elevation: 6,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignUpScreen()),
+                    );
+                  },
+                  icon: Icon(Icons.app_registration, color: Color(0xff0b5d0b)),
+                  label: Text(
+                    "Register",
+                    style: TextStyle(color: Color(0xff0b5d0b)),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Color(0xff0b5d0b),
+                    side: BorderSide(color: Color(0xff0b5d0b), width: 2),
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    minimumSize: Size(double.infinity, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    textStyle: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    elevation: 0,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 40),
           ],
         ),
       ),
-    ));
+    );
   }
 }

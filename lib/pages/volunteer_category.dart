@@ -55,7 +55,6 @@ class _VolunteerCategoryState extends State<VolunteerCategory> {
           ),
         ),
         Scaffold(
-          backgroundColor: Color.fromRGBO(255, 255, 255, 1),
           body: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Padding(
@@ -110,9 +109,8 @@ class _VolunteerCategoryState extends State<VolunteerCategory> {
                                 height: innerHeight * 0.72,
                                 width: innerWidth,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: Colors.white,
-                                ),
+                                    borderRadius: BorderRadius.circular(30),
+                                    color: Colors.transparent),
                                 child: Column(
                                   children: [
                                     SizedBox(
@@ -145,7 +143,7 @@ class _VolunteerCategoryState extends State<VolunteerCategory> {
                                               ),
                                             ),
                                             Text(
-                                              '$rewards',
+                                              '${rewards ?? "N/A"}',
                                               style: TextStyle(
                                                 color: Color.fromRGBO(
                                                     144, 154, 164, 1),
@@ -182,7 +180,7 @@ class _VolunteerCategoryState extends State<VolunteerCategory> {
                                               ),
                                             ),
                                             Text(
-                                              '$rank',
+                                              '${rank ?? "N/A"} ',
                                               style: TextStyle(
                                                 color: Color.fromRGBO(
                                                     171, 173, 175, 1),
@@ -213,6 +211,7 @@ class _VolunteerCategoryState extends State<VolunteerCategory> {
                               right: 0,
                               child: Center(
                                 child: Container(
+                                  color: Colors.transparent,
                                   child: Image.asset(
                                     'assets/images/rewardimg.gif',
                                     width: innerWidth * 0.45,

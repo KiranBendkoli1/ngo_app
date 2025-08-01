@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DonationOptionCard extends StatelessWidget {
-  final IconData icon;
-  final Color iconColor;
+  final IconButton icon;
+  final Color textColor;
   final String title;
   final String description;
   final VoidCallback onTap;
@@ -11,7 +11,7 @@ class DonationOptionCard extends StatelessWidget {
   const DonationOptionCard({
     super.key,
     required this.icon,
-    required this.iconColor,
+    required this.textColor,
     required this.title,
     required this.description,
     required this.onTap,
@@ -35,14 +35,14 @@ class DonationOptionCard extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Icon(icon, size: 40, color: iconColor),
+              icon,
               const SizedBox(height: 12),
               Text(
                 title,
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: iconColor),
+                    color: textColor),
               ),
               const SizedBox(height: 8),
               Text(

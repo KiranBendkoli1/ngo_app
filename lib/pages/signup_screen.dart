@@ -94,15 +94,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 Center(
                   child: Container(
-                    height: 200,
-                    width: 200,
+                    height: 150,
+                    width: 150,
                     clipBehavior: Clip.hardEdge,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
                     ),
                     child: TextButton(
                       style: ButtonStyle(
-                        padding: MaterialStateProperty.all(EdgeInsets.zero),
+                        padding: WidgetStateProperty.all(EdgeInsets.zero),
                       ),
                       onPressed: () async {
                         try {
@@ -123,9 +123,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
                             uiSettings: [
                               AndroidUiSettings(
+                                
                                 toolbarTitle: 'Crop Image',
                                 lockAspectRatio: true,
                                 toolbarColor: Colors.blueGrey,
+                                statusBarColor: Colors.blueGrey,
+                                cropGridStrokeWidth: 1, 
                                 toolbarWidgetColor: Colors.white,
                               ),
                               IOSUiSettings(
@@ -152,15 +155,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           debugPrint("Stack trace: $stackTrace");
                         }
                       },
-                      child: path1.isEmpty
-                          ? Image.asset(
-                              "assets/images/blankuser.png",
-                              fit: BoxFit.cover,
-                            )
-                          : Image.file(
-                              File(path1),
-                              fit: BoxFit.cover,
-                            ),
+                      child: CircleAvatar(
+                        radius: 60,
+                        backgroundImage:
+                            path1.isNotEmpty ? FileImage(File(path1)) : null,
+                        backgroundColor: const Color(0xfff2f2f3),
+                        child: path1.isEmpty
+                            ? Icon(Icons.add_a_photo,
+                                size: 32, color: Colors.grey)
+                            : null,
+                      ),
                     ),
                   ),
                 ),
@@ -287,46 +291,43 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 14, 0, 16),
-                  child: TextField(
-                    controller: cityController,
-                    keyboardType: TextInputType.text,
-                    style: TextStyle(
+                TextField(
+                  controller: cityController,
+                  keyboardType: TextInputType.text,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    fontSize: 14,
+                    color: Color(0xff000000),
+                  ),
+                  decoration: InputDecoration(
+                    disabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide:
+                          BorderSide(color: Color(0x00ffffff), width: 1),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide:
+                          BorderSide(color: Color(0x00ffffff), width: 1),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide:
+                          BorderSide(color: Color(0x00ffffff), width: 1),
+                    ),
+                    hintText: "City",
+                    hintStyle: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
                       fontSize: 14,
-                      color: Color(0xff000000),
+                      color: Color(0xff9f9d9d),
                     ),
-                    decoration: InputDecoration(
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide:
-                            BorderSide(color: Color(0x00ffffff), width: 1),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide:
-                            BorderSide(color: Color(0x00ffffff), width: 1),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide:
-                            BorderSide(color: Color(0x00ffffff), width: 1),
-                      ),
-                      hintText: "City",
-                      hintStyle: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14,
-                        color: Color(0xff9f9d9d),
-                      ),
-                      filled: true,
-                      fillColor: Color(0xfff2f2f3),
-                      isDense: false,
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                    ),
+                    filled: true,
+                    fillColor: Color(0xfff2f2f3),
+                    isDense: false,
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                   ),
                 ),
                 Padding(
@@ -575,7 +576,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             builder: (context) => UserHomePage(),
           ),
         );
-            }).catchError((e) {
+      }).catchError((e) {
         Fluttertoast.showToast(
           msg: "Error  ${e.message}",
           toastLength: Toast.LENGTH_LONG,
