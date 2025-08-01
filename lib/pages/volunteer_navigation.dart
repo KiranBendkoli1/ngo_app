@@ -1,9 +1,7 @@
-// ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:ngo_app_v2/pages/volunteer_category.dart';
 import 'package:ngo_app_v2/pages/volunteer_profile.dart';
-import 'package:ngo_app_v2/pages/volunteer_search.dart';
-import 'package:ngo_app_v2/pages/volunteer_homepage.dart';
+import 'package:ngo_app_v2/pages/volunteer_home.dart';
 
 class VolunteerNavigation extends StatefulWidget {
   const VolunteerNavigation({super.key});
@@ -16,9 +14,8 @@ class _VolunteerNavigationState extends State<VolunteerNavigation> {
   @override
   Widget build(BuildContext context) {
     const List<Widget> pages = <Widget>[
-      VolunteerHomePage(),
+      VolunteerHome(),
       VolunteerCategory(),
-      VolunteerSearch(),
       VolunteerProfile()
     ];
     return Scaffold(
@@ -33,11 +30,6 @@ class _VolunteerNavigationState extends State<VolunteerNavigation> {
           BottomNavigationBarItem(
             icon: Icon(Icons.star),
             label: "Rewards",
-            backgroundColor: Color(0xFF0B5D0B),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: "Search",
             backgroundColor: Color(0xFF0B5D0B),
           ),
           BottomNavigationBarItem(
