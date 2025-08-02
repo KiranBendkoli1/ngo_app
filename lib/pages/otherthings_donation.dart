@@ -142,7 +142,9 @@ class _PickupScheduleFormState extends State<PickupScheduleForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Schedule a Pickup'),
+        automaticallyImplyLeading: false ,
+        centerTitle: true,
+        title: Text('Schedule a Pickup', style: TextStyle(color: Colors.white)),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),

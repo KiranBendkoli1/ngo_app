@@ -69,6 +69,7 @@ class _VolunteerProfileState extends State<VolunteerProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         automaticallyImplyLeading: false,
         title: Text(
           'Profile',

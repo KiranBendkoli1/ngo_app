@@ -38,6 +38,7 @@ class _VolunteerHomeState extends State<VolunteerHome> {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
           "Volunteer",
           style: TextStyle(color: Colors.white),

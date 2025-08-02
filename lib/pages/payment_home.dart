@@ -43,8 +43,10 @@ class _HomePageState extends State<HomePage> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
         title: Text(
-          "NGO Payment Gateway",
+          "Payment Gateway",
           style: TextStyle(color: Colors.white),
         ),
         flexibleSpace: Container(

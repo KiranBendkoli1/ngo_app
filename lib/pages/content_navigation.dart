@@ -133,7 +133,7 @@ class _ContentNavigationState extends State<ContentNavigation> {
     return file == null
         ? Scaffold(
             appBar: AppBar(
-              centerTitle: false,
+              centerTitle: true,
               automaticallyImplyLeading: false,
               title: Text(
                 "Inspire",
